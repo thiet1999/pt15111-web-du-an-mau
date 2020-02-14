@@ -36,7 +36,7 @@ $vehicles = queryExecute($getAllVehicleSql, true);
                             <i class="fa fa-user-secret fa-4x"></i>
                         </div>
                         <div class="col-8">
-                            <a href=""><?php echo count($users)?> tài khoản</a>
+                            <a href="<?php echo ADMIN_URL . "users"?>"><?php echo count($users)?> tài khoản</a>
                         </div>
                     </div>
                 </div>
