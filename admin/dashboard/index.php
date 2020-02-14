@@ -3,8 +3,17 @@ session_start();
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
 
-$sql = "select * from users";
-$users = queryExecute($sql, true);
+# Lấy ra tất cả bản ghi trong bảng users
+$getAllMemberSql = "select * from users where role_id = 1";
+$users = queryExecute($getAllMemberSql, true);
+
+# Lấy ra tất cả các bản ghi trong bảng tickets
+$getAllTicketSql = "select * from tickets";
+$tickets = queryExecute($getAllTicketSql, true);
+
+# Lấy ra tất cả các bản ghi trong bảng vehicles
+$getAllVehicleSql = "select * from vehicles";
+$vehicles = queryExecute($getAllVehicleSql, true);
 ?>
 <!doctype html>
 <html lang="vn">
@@ -24,10 +33,10 @@ $users = queryExecute($sql, true);
                 <div class="col-3 dashboard-card bg-red">
                     <div class="row">
                         <div class="col-4">
-                            <i class="fa fa-users fa-5x"></i>
+                            <i class="fa fa-user-secret fa-4x"></i>
                         </div>
                         <div class="col-8">
-                            <a href="">1 tài khoản</a>
+                            <a href=""><?php echo count($users)?> tài khoản</a>
                         </div>
                     </div>
                 </div>
@@ -35,10 +44,10 @@ $users = queryExecute($sql, true);
                 <div class="col-3 dashboard-card bg-blue">
                     <div class="row">
                         <div class="col-4">
-                            <i class="fa fa-ticket fa-5x"></i>
+                            <i class="fa fa-ticket fa-4x"></i>
                         </div>
                         <div class="col-8">
-                            <a href="">1 tài khoản</a>
+                            <a href=""><?php echo count($tickets)?> Vé xe</a>
                         </div>
                     </div>
                 </div>
@@ -46,10 +55,10 @@ $users = queryExecute($sql, true);
                 <div class="col-3 dashboard-card bg-green">
                     <div class="row">
                         <div class="col-4">
-                            <i class="fa fa-motorcycle fa-5x"></i>
+                            <i class="fa fa-motorcycle fa-4x"></i>
                         </div>
                         <div class="col-8">
-                            <a href="">1 tài khoản</a>
+                            <a href=""><?php echo count($vehicles)?> Phương tiện</a>
                         </div>
                     </div>
                 </div>

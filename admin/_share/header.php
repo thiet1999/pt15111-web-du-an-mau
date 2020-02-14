@@ -2,7 +2,7 @@
 session_start();
 require_once '../../config/utils.php';
 
-$loggedInUser = $_SESSION['AUTH'];
+$loggedInUser = $_SESSION[AUTH];
 ?>
 <header >
     <div class="row">
@@ -37,7 +37,7 @@ $loggedInUser = $_SESSION['AUTH'];
                             <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                             <a class="dropdown-item" href="#">Thông tin vé xe</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo BASE_URL . '/logout.php'?>">Đăng xuất</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL . 'logout.php'?>">Đăng xuất</a>
                         </div>
                     </li>
                 <?php else: ?>
