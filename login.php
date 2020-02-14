@@ -2,6 +2,7 @@
 // bắt đầu sử dụng session
 session_start();
 require_once "./config/utils.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,11 @@ require_once "./config/utils.php";
                     </a>
                 </div>
 				<form action="post-login.php" method="post">
+                    <div class="d-flex justify-content-center">
+                        <?php if(isset($_GET['msg'])):?>
+                        <span class="text-danger"><?php echo $_GET['msg']?></span>
+                        <?php endif;?>
+                    </div>
 					<div class="form-group">
 						<label for="email">Email address</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Nhập Email">

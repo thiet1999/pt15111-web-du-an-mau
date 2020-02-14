@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once '../../config/utils.php';
-checkLoggedInUser();
+checkAdminLoggedIn();
+
 $sql = "select * from users";
 $users = queryExecute($sql, true);
 ?>

@@ -3,8 +3,6 @@
 session_start();
 require_once "./config/utils.php";
 $loggedInUser = $_SESSION[AUTH];
-
-// echo password_hash("123456", PASSWORD_DEFAULT);
  ?>
 <!DOCTYPE html>
 <html>
@@ -51,7 +49,7 @@ $loggedInUser = $_SESSION[AUTH];
                     <div class="post-unit">
                         <div class="row">
                             <div class="col-4 post-image">
-                                <img src="<?php echo BASE_URL . '/public/images/demo.jpeg'?>" alt="" class="img-thumbnail">
+                                <img src="<?php echo BASE_URL . 'public/images/demo.jpeg'?>" alt="" class="img-thumbnail">
                             </div>
                             <div class="col-8 post-content">
                                 <h3>
