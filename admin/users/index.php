@@ -79,7 +79,7 @@ $users = queryExecute($getUsersQuery, true);
                         <th>Số ĐT</th>
                         <th>Số lượng xe</th>
                         <th>
-                            <a href="<?php echo ADMIN_URL . 'users/add.php'?>" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm</a>
+                            <a href="<?php echo ADMIN_URL . 'users/add-form.php'?>" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm</a>
                         </th>
                     </thead>
                     <tbody>
