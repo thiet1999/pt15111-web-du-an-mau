@@ -55,7 +55,7 @@ checkAdminLoggedIn();
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh đại diện<span class="text-danger">*</span></label>
-                        <input type="file" class="form-control">
+                        <input type="file" class="form-control" onchange="encodeImageFileAsURL(this)">
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại</label>
@@ -78,7 +78,14 @@ checkAdminLoggedIn();
 </div>
 <?php include_once '../_share/script.php' ?>
 <script>
-
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            $('#preview-img').attr('src', reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
 </script>
 </body>
 </html>
