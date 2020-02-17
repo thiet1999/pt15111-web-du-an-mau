@@ -17,7 +17,11 @@ checkAdminLoggedIn();
 <body>
 <div class="container">
     <?php include_once '../_share/header.php' ?>
-    <main>
+    <main class="container">
+        <form id="add-user-form" action="<?= ADMIN_URL . 'users/save-add.php'?>" method="post" enctype="multipart/form-data">
+            <div class="row"></div>
+        </form>
+
 
     </main>
 </div>
