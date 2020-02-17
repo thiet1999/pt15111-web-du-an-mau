@@ -96,7 +96,7 @@ $users = queryExecute($getUsersQuery, true);
                                 <a href="<?php echo ADMIN_URL . 'users/edit.php?id=' . $us['id'] ?>" class="btn btn-sm btn-info">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <a href="<?php echo ADMIN_URL . 'users/remove.php?id=' . $us['id'] ?>" class="btn btn-sm btn-danger">
+                                <a href="<?php echo ADMIN_URL . 'users/remove.php?id=' . $us['id'] ?>" class="btn-remove btn btn-sm btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -108,5 +108,25 @@ $users = queryExecute($getUsersQuery, true);
         </main>
     </div>
     <?php include_once '../_share/script.php' ?>
+    <script>
+        $('.btn-remove').on('click', function () {
+            var redirectUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Thông báo!',
+                text: "Bạn có chắc chắn muốn xóa tài khoản này?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý'
+            }).then((result) => { // arrow function es6 (es2015)
+                if (result.value) {
+                    window.location.href = redirectUrl;
+                }
+            });
+            return false;
+        })
+    </script>
 </body>
 </html>

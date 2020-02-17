@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 # Quy định constants
 define('BASE_URL', 'http://localhost/pt15111-web/');
 define('ADMIN_URL', 'http://localhost/pt15111-web/admin/');
