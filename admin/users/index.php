@@ -74,7 +74,7 @@ $users = queryExecute($getUsersQuery, true);
                         <th>ID</th>
                         <th>Tên</th>
                         <th>Email</th>
-                        <th>Ảnh</th>
+                        <th width="100">Ảnh</th>
                         <th>Căn hộ</th>
                         <th>Số ĐT</th>
                         <th>Số lượng xe</th>
@@ -88,7 +88,9 @@ $users = queryExecute($getUsersQuery, true);
                             <td><?php echo $us['id']?></td>
                             <td><?php echo $us['name']?></td>
                             <td><?php echo $us['email']?></td>
-                            <td><?php echo $us['avatar']?></td>
+                            <td>
+                                <img class="img-fluid" src="<?= BASE_URL . $us['avatar']?>" alt="">
+                            </td>
                             <td><?php echo $us['house_no']?></td>
                             <td><?php echo $us['phone_number']?></td>
                             <td><?php echo $us['id']?></td>

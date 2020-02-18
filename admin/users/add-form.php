@@ -27,14 +27,23 @@ $roles = queryExecute($getRoleQuery, true);
                     <div class="form-group">
                         <label for="">Tên người dùng<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="name">
+                        <?php if(isset($_GET['nameerr'])):?>
+                        <label class="error"><?= $_GET['nameerr']?></label>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Email<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="email">
+                        <?php if(isset($_GET['emailerr'])):?>
+                            <label class="error"><?= $_GET['emailerr']?></label>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Mật khẩu<span class="text-danger">*</span></label>
                         <input type="password" id="main-password" class="form-control" name="password">
+                        <?php if(isset($_GET['passworderr'])):?>
+                            <label class="error"><?= $_GET['passworderr']?></label>
+                        <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label for="">Nhập lại mật khẩu<span class="text-danger">*</span></label>
