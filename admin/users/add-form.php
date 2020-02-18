@@ -2,6 +2,8 @@
 session_start();
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
+$getRoleQuery = "select * from roles where status = 1";
+$roles = queryExecute($getRoleQuery, true);
 
 ?>
 <!doctype html>
@@ -32,7 +34,7 @@ checkAdminLoggedIn();
                     </div>
                     <div class="form-group">
                         <label for="">Mật khẩu<span class="text-danger">*</span></label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" id="main-password" class="form-control" name="password">
                     </div>
                     <div class="form-group">
                         <label for="">Nhập lại mật khẩu<span class="text-danger">*</span></label>
@@ -41,9 +43,9 @@ checkAdminLoggedIn();
                     <div class="form-group">
                         <label for="">Quyền</label>
                         <select name="role_id" class="form-control">
-                            <option value="1">Member</option>
-                            <option value="1">Member</option>
-                            <option value="1">Member</option>
+                            <?php foreach ($roles as $ro):?>
+                            <option value="<?= $ro['id'] ?>"><?= $ro['name'] ?></option>
+                            <?php endforeach?>
                         </select>
                     </div>
                 </div>
@@ -55,7 +57,7 @@ checkAdminLoggedIn();
                     </div>
                     <div class="form-group">
                         <label for="">Ảnh đại diện<span class="text-danger">*</span></label>
-                        <input type="file" class="form-control" onchange="encodeImageFileAsURL(this)">
+                        <input type="file" class="form-control" name="avatar" onchange="encodeImageFileAsURL(this)">
                     </div>
                     <div class="form-group">
                         <label for="">Số điện thoại</label>
@@ -90,6 +92,78 @@ checkAdminLoggedIn();
         }
         reader.readAsDataURL(file);
     }
+    $('#add-user-form').validate({
+        rules:{
+            name: {
+                required: true,
+                maxlength: 191
+            },
+            email: {
+                required: true,
+                maxlength: 191,
+                email: true,
+                remote: {
+                    url: "<?= ADMIN_URL . 'users/verify-email-existed.php'?>",
+                    type: "post",
+                    data: {
+                        email: function() {
+                            return $( "input[name='email']" ).val();
+                        }
+                    }
+                }
+            },
+            password:{
+                required: true,
+                maxlength: 191
+            },
+            cfpassword: {
+                required: true,
+                equalTo: "#main-password"
+            },
+            phone_number: {
+                number: true
+            },
+            house_no:{
+                maxlength: 191
+            },
+            avatar: {
+                required: true,
+                extension: "png|jpg|jpeg|gif"
+            }
+        },
+        messages: {
+            name: {
+                required: "Hãy nhập tên người dùng",
+                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
+            },
+            email: {
+                required: "Hãy nhập email",
+                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự",
+                email: "Không đúng định dạng email",
+                remote: "Email đã tồn tại, vui lòng sử dụng email khác"
+            },
+            password:{
+                required: "Hãy nhập mật khẩu",
+                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
+            },
+            cfpassword: {
+                required: "Nhập lại mật khẩu",
+                equalTo: "Cần khớp với mật khẩu"
+            },
+            phone_number: {
+                min: "Bắt buộc là số có 10 chữ số",
+                max: "Bắt buộc là số có 10 chữ số",
+                number: "Nhập định dạng số"
+            },
+            house_no:{
+                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
+            },
+            avatar: {
+                required: "Hãy nhập ảnh đại diện",
+                extension: "Hãy nhập đúng định dạng ảnh (jpg | jpeg | png | gif)"
+            }
+        }
+    });
 </script>
 </body>
 </html>

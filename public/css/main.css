@@ -56,3 +56,6 @@ footer{
 .bg-yellow{
     background: #F39C11;
 }
+.form-group label.error{
+    color: #DD4B38;
+}
