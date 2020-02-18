@@ -50,7 +50,7 @@ checkAdminLoggedIn();
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
-                            <img src="<?= PUBLIC_URL . 'images/default-image.jpg'?>" id="preview-img" class="img-fluid">
+                            <img src="<?= DEFAULT_IMAGE ?>" id="preview-img" class="img-fluid">
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,6 +80,10 @@ checkAdminLoggedIn();
 <script>
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
+        if(file === undefined){
+            $('#preview-img').attr('src', "<?= DEFAULT_IMAGE ?>");
+            return false;
+        }
         var reader = new FileReader();
         reader.onloadend = function() {
             $('#preview-img').attr('src', reader.result)
