@@ -73,7 +73,7 @@ if(!$user){
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
-                            <img src="<?= DEFAULT_IMAGE ?>" id="preview-img" class="img-fluid">
+                            <img src="<?= BASE_URL . $user['avatar'] ?>" id="preview-img" class="img-fluid">
                         </div>
                     </div>
                     <div class="form-group">
