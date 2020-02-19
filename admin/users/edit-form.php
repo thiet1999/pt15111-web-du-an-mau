@@ -37,6 +37,7 @@ if($user['id'] != $_SESSION[AUTH]['id'] && $user['role_id'] >= $_SESSION[AUTH]['
     <main class="container">
         <h3>Tạo tài khoản</h3>
         <form id="edit-user-form" action="<?= ADMIN_URL . 'users/save-edit.php'?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $user['id'] ?>">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
