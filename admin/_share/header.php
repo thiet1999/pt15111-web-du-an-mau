@@ -15,7 +15,7 @@ $loggedInUser = $_SESSION[AUTH];
 
             <ul class="dashboard-nav nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" href="<?= ADMIN_URL ?>">Dashboard</a>
+                    <a class="nav-link active" href="<?= ADMIN_URL . 'dashboard/' ?>">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= ADMIN_URL . 'users' ?>">Quản lý tài khoản</a>

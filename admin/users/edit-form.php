@@ -14,6 +14,12 @@ if(!$user){
     header("location: " . ADMIN_URL . 'users?msg=Tài khoản không tồn tại');die;
 }
 
+// kiểm tra xem có quyền để thực hiện edit hay không
+if($user['id'] != $_SESSION[AUTH]['id'] && $user['role_id'] >= $_SESSION[AUTH]['role_id'] ){
+    header("location: " . ADMIN_URL . 'users?msg=Bạn không có quyền sửa thông tin tài khoản này');die;
+}
+
+
 ?>
 <!doctype html>
 <html lang="vn">
@@ -77,7 +83,7 @@ if(!$user){
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Ảnh đại diện<span class="text-danger">*</span></label>
+                        <label for="">Ảnh đại diện</label>
                         <input type="file" class="form-control" name="avatar" onchange="encodeImageFileAsURL(this)">
                     </div>
 
@@ -97,7 +103,7 @@ if(!$user){
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
         if(file === undefined){
-            $('#preview-img').attr('src', "<?= DEFAULT_IMAGE ?>");
+            $('#preview-img').attr('src', "<?= BASE_URL . $user['avatar'] ?>");
             return false;
         }
         var reader = new FileReader();
@@ -106,7 +112,7 @@ if(!$user){
         }
         reader.readAsDataURL(file);
     }
-    $('#add-user-form').validate({
+    $('#edit-user-form').validate({
         rules:{
             name: {
                 required: true,
@@ -122,17 +128,10 @@ if(!$user){
                     data: {
                         email: function() {
                             return $( "input[name='email']" ).val();
-                        }
+                        },
+                        id: <?= $user['id']; ?>
                     }
                 }
-            },
-            password:{
-                required: true,
-                maxlength: 191
-            },
-            cfpassword: {
-                required: true,
-                equalTo: "#main-password"
             },
             phone_number: {
                 number: true
@@ -141,7 +140,6 @@ if(!$user){
                 maxlength: 191
             },
             avatar: {
-                required: true,
                 extension: "png|jpg|jpeg|gif"
             }
         },
@@ -156,14 +154,6 @@ if(!$user){
                 email: "Không đúng định dạng email",
                 remote: "Email đã tồn tại, vui lòng sử dụng email khác"
             },
-            password:{
-                required: "Hãy nhập mật khẩu",
-                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
-            },
-            cfpassword: {
-                required: "Nhập lại mật khẩu",
-                equalTo: "Cần khớp với mật khẩu"
-            },
             phone_number: {
                 min: "Bắt buộc là số có 10 chữ số",
                 max: "Bắt buộc là số có 10 chữ số",
@@ -173,7 +163,6 @@ if(!$user){
                 maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
             },
             avatar: {
-                required: "Hãy nhập ảnh đại diện",
                 extension: "Hãy nhập đúng định dạng ảnh (jpg | jpeg | png | gif)"
             }
         }
