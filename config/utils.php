@@ -6,7 +6,8 @@ define('ADMIN_URL', BASE_URL . 'admin/');
 define('PUBLIC_URL', BASE_URL . 'public/');
 define('DEFAULT_IMAGE', PUBLIC_URL . 'images/default-image.jpg');
 define('AUTH', 'AUTH_SESSION');
-
+define("ACTIVE", 1);
+define("INACTIVE", -1);
 
 # Các hàm sử dụng chung
 # Trả về kết nối đến csdl

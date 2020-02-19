@@ -21,7 +21,7 @@ $loggedInUser = $_SESSION[AUTH];
                     <a class="nav-link" href="<?= ADMIN_URL . 'users' ?>">Quản lý tài khoản</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Quản lý loại xe</a>
+                    <a class="nav-link" href="<?= ADMIN_URL . 'vehicle_types' ?>">Quản lý loại xe</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Quản lý xe</a>
