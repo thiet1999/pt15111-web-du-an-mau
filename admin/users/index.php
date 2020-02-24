@@ -156,6 +156,35 @@ $users = queryExecute($getUsersQuery, true);
 </div>
 <!-- ./wrapper -->
 <?php include_once '../_share/script.php'; ?>
-
+<script>
+    $(document).ready(function(){
+        $('.btn-remove').on('click', function () {
+            var redirectUrl = $(this).attr('href');
+            Swal.fire({
+                title: 'Thông báo!',
+                text: "Bạn có chắc chắn muốn xóa tài khoản này?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý'
+            }).then((result) => { // arrow function es6 (es2015)
+                if (result.value) {
+                    window.location.href = redirectUrl;
+                }
+            });
+            return false;
+        });
+        <?php if(isset($_GET['msg'])):?>
+        Swal.fire({
+            position: 'bottom-end',
+            icon: 'warning',
+            title: "<?= $_GET['msg'];?>",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        <?php endif;?>
+    });
+</script>
 </body>
 </html>
