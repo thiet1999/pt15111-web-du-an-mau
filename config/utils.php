@@ -1,7 +1,7 @@
 <?php
 
 # Quy định constants
-define('BASE_URL', 'http://localhost/pt15111-web/');
+define('BASE_URL', 'http://localhost/pt15111-web-du-an-mau/');
 define('ADMIN_URL', BASE_URL . 'admin/');
 define('PUBLIC_URL', BASE_URL . 'public/');
 define('ADMIN_ASSET_URL', PUBLIC_URL . 'admin/');
